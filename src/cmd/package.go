@@ -45,13 +45,19 @@ var packageCreateCmd = &cobra.Command{
 			baseDir = args[0]
 		}
 
+		print("REGEX REACHED ***")
+
 		var isCleanPathRegex = regexp.MustCompile(`^[a-zA-Z0-9\_\-\/\.\~\\:]+$`)
 		if !isCleanPathRegex.MatchString(config.CommonOptions.CachePath) {
 			message.Warnf("Invalid characters in Zarf cache path, defaulting to %s", config.ZarfDefaultCachePath)
 			config.CommonOptions.CachePath = config.ZarfDefaultCachePath
 		}
 
+		print("CREATE STARTED ***")
+
 		packager.Create(baseDir)
+
+		print("CREATE FINISHED ***")
 	},
 }
 
